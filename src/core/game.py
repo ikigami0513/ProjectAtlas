@@ -18,9 +18,10 @@ class Game:
         self.fps = fps
         self.zoom = 1.0
 
-        self.display_surface = pygame.display.set_mode(self.size)
+        self.display_surface = pygame.display.set_mode(self.size, pygame.RESIZABLE)
 
-        self.game_resolution = self.size
+        # Use a fixed internal resolution for your game world
+        self.game_resolution = (800, 600)  # Fixed resolution
         self.game_surface = pygame.Surface(self.game_resolution)
 
         pygame.display.set_caption(self.title)
@@ -92,13 +93,13 @@ class Game:
         self.animation_manager.add("player/hair/hair_1/grey/walk/right", Animation(self.atlas_manager.get("player/hair/hair_1/grey"), [f"walk_right_{i}" for i in range(6)]))
         self.animation_manager.add("player/hair/hair_1/grey/walk/up", Animation(self.atlas_manager.get("player/hair/hair_1/grey"), [f"walk_up_{i}" for i in range(6)]))
 
-        self.animation_manager.add("cow_1_idle_left", Animation(self.atlas_manager.get("cow_1"), ["idle_left_0", "idle_left_1"]))
-        self.animation_manager.add("cow_1_idle_down", Animation(self.atlas_manager.get("cow_1"), ["idle_down_0", "idle_down_1"]))
-        self.animation_manager.add("cow_1_idle_up", Animation(self.atlas_manager.get("cow_1"), ["idle_up_0", "idle_up_1"]))
+        self.animation_manager.add("cow_1_idle_left", Animation(self.atlas_manager.get("cow_1"), ["idle_left_0", "idle_left_1"], animation_speed=10))
+        self.animation_manager.add("cow_1_idle_down", Animation(self.atlas_manager.get("cow_1"), ["idle_down_0", "idle_down_1"], animation_speed=10))
+        self.animation_manager.add("cow_1_idle_up", Animation(self.atlas_manager.get("cow_1"), ["idle_up_0", "idle_up_1"], animation_speed=10))
 
-        self.animation_manager.add("cow_1_walk_left", Animation(self.atlas_manager.get("cow_1"), [f"walk_left_{i}" for i in range(8)]))
-        self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("cow_1"), [f"walk_down_{i}" for i in range(8)]))
-        self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("cow_1"), [f"walk_up_{i}" for i in range(8)]))
+        self.animation_manager.add("cow_1_walk_left", Animation(self.atlas_manager.get("cow_1"), [f"walk_left_{i}" for i in range(8)], animation_speed=10))
+        self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("cow_1"), [f"walk_down_{i}" for i in range(8)], animation_speed=10))
+        self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("cow_1"), [f"walk_up_{i}" for i in range(8)], animation_speed=10))
 
         Entity((200, 200), self.animation_manager.get("cow_1_idle_left"), self.all_sprites)
 
@@ -110,6 +111,8 @@ class Game:
                 self.running = False
 
             if event.type == pygame.VIDEORESIZE:
+                self.display_surface = pygame.display.set_mode(event.size, pygame.RESIZABLE)
+                self.size = event.size
                 self.ui_manager.set_window_resolution(event.size)
 
             if event.type == pygame.MOUSEWHEEL:
@@ -129,12 +132,26 @@ class Game:
         # self.atlas_manager.get("fishes").render(self.game_surface, "Clownfish", (150, 150))
         self.all_sprites.draw(self.game_surface, self.player)
 
-        zoomed_width = int(self.game_resolution[0] * self.zoom)
-        zoomed_height = int(self.game_resolution[1] * self.zoom)
+        # Calculate the aspect ratio to avoid stretching
+        aspect_ratio = self.game_resolution[0] / self.game_resolution[1]
+        current_width, current_height = self.display_surface.get_size()
+        
+        # Calculate new dimensions while preserving aspect ratio
+        if current_width / current_height > aspect_ratio:
+            new_height = current_height
+            new_width = int(new_height * aspect_ratio)
+        else:
+            new_width = current_width
+            new_height = int(new_width / aspect_ratio)
 
+        # Apply zoom to the new dimensions
+        zoomed_width = int(new_width * self.zoom)
+        zoomed_height = int(new_height * self.zoom)
+
+        # Scale the game surface
         zoomed_game_surface = pygame.transform.scale(self.game_surface, (zoomed_width, zoomed_height))
 
-        # Centrer la surface zoomée sur l'écran
+        # Center the zoomed surface
         rect = zoomed_game_surface.get_rect(center=self.display_surface.get_rect().center)
 
         self.display_surface.fill((0, 0, 0))
@@ -152,3 +169,4 @@ class Game:
             self.clock.tick(self.fps)
 
         pygame.quit()
+        
