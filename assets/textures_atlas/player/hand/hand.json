@@ -1,0 +1,35 @@
+{
+    "texture": "player/hand/hand.png",
+    "sprites": [
+        {
+            "name": "idle_down_0",
+            "position": [0, 0],
+            "size": [64, 64]
+        },
+        {
+            "name": "idle_down_1",
+            "position": [64, 0],
+            "size": [64, 64]
+        },
+        {
+            "name": "idle_down_2",
+            "position": [128, 0],
+            "size": [64, 64]
+        },
+        {
+            "name": "idle_down_3",
+            "position": [192, 0],
+            "size": [64, 64]
+        },
+        {
+            "name": "idle_down_4",
+            "position": [256, 0],
+            "size": [64, 64]
+        },
+        {
+            "name": "idle_down_5",
+            "position": [320, 0],
+            "size": [64, 64]
+        }
+    ]
+}

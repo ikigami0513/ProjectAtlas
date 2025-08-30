@@ -1,0 +1,85 @@
+{
+    "texture": "fishes.png",
+    "sprites": [
+        {
+            "name": "Atlantic Bass",
+            "position": [0, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "Clownfish",
+            "position": [17, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "Dab",
+            "position": [33, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "Sea Spider",
+            "position": [49, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "Blue Gill",
+            "position": [0, 17],
+            "size": [16, 16]
+        },
+        {
+            "name": "Guppy",
+            "position": [17, 17],
+            "size": [16, 16]
+        },
+        {
+            "name": "Freshwater Snail",
+            "position": [33, 17],
+            "size": [16, 16]
+        },
+        {
+            "name": "Axolotl",
+            "position": [49, 17],
+            "size": [16, 16]
+        },
+        {
+            "name": "High Fin Banded Shark",
+            "position": [0, 33],
+            "size": [16, 16]
+        },
+        {
+            "name": "Golden Tench",
+            "position": [17, 33],
+            "size": [16, 16]
+        },
+        {
+            "name": "Moss Ball",
+            "position": [33, 33],
+            "size": [16, 16]
+        },
+        {
+            "name": "Plastic Bag",
+            "position": [49, 33],
+            "size": [16, 16]
+        },
+        {
+            "name": "Junonia",
+            "position": [0, 49],
+            "size": [16, 16]
+        },
+        {
+            "name": "Sand Dollar",
+            "position": [17, 49],
+            "size": [16, 16]
+        },
+        {
+            "name": "Starfish",
+            "position": [33, 49],
+            "size": [16, 16]
+        },
+        {
+            "name": "Bobber",
+            "position": [49, 49],
+            "size": [16, 16]
+        }
+    ]
+}
