@@ -6,6 +6,7 @@ from graphics.atlas_manager import AtlasManager
 from graphics.animation_manager import AnimationManager
 from entities.entity import Entity
 from entities.player import Player
+from core.groups import AllSprites
 
 
 class Game:
@@ -26,7 +27,7 @@ class Game:
 
         self.clock = pygame.time.Clock()
 
-        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites = AllSprites()
 
         self.running = True
 
@@ -99,7 +100,7 @@ class Game:
         self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("cow_1"), [f"walk_down_{i}" for i in range(8)]))
         self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("cow_1"), [f"walk_up_{i}" for i in range(8)]))
 
-        Entity((200, 200), self.animation_manager.get("cow_1_walk_left"), self.all_sprites)
+        Entity((200, 200), self.animation_manager.get("cow_1_idle_left"), self.all_sprites)
 
         self.player = Player((400, 300), self.all_sprites)
 
@@ -125,8 +126,8 @@ class Game:
 
     def draw(self) -> None:
         self.game_surface.fill((135, 206, 235))
-        self.atlas_manager.get("fishes").render(self.game_surface, "Clownfish", (150, 150))
-        self.all_sprites.draw(self.game_surface)
+        # self.atlas_manager.get("fishes").render(self.game_surface, "Clownfish", (150, 150))
+        self.all_sprites.draw(self.game_surface, self.player)
 
         zoomed_width = int(self.game_resolution[0] * self.zoom)
         zoomed_height = int(self.game_resolution[1] * self.zoom)
