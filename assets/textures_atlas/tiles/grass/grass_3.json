@@ -1,0 +1,10 @@
+{
+    "texture": "tiles/grass/grass_3.png",
+    "sprites": [
+        {
+            "name": "grass_pattern_1",
+            "position": [96, 144],
+            "size": [16, 16]
+        }
+    ]
+}

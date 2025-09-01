@@ -7,6 +7,8 @@ from graphics.animation_manager import AnimationManager
 from entities.entity import Entity
 from entities.player import Player
 from core.groups import AllSprites
+from world.world import World
+from world.tile import TileAtlas
 
 
 class Game:
@@ -28,8 +30,6 @@ class Game:
 
         self.clock = pygame.time.Clock()
 
-        self.all_sprites = AllSprites()
-
         self.running = True
 
         self.ui_manager = pygame_gui.UIManager(self.size)
@@ -38,12 +38,16 @@ class Game:
         self.animation_manager = AnimationManager()
         self.atlas_manager.add("fishes")
         self.atlas_manager.add("cow_1")
+
         self.atlas_manager.add("player/base")
         self.atlas_manager.add("player/shoes/white")
         self.atlas_manager.add("player/pants/og/blue")
         self.atlas_manager.add("player/chest/og/black")
         self.atlas_manager.add("player/hand/hand")
         self.atlas_manager.add("player/hair/hair_1/grey")
+
+        self.atlas_manager.add("tiles/grass/grass_3")
+        self.atlas_manager.add("tiles/beach/beach")
 
         self.animation_manager.add("player/base/idle/down", Animation(self.atlas_manager.get("player/base"), [f"idle_down_{i}" for i in range(6)]))
         self.animation_manager.add("player/base/idle/right", Animation(self.atlas_manager.get("player/base"), [f"idle_right_{i}" for i in range(6)]))
@@ -100,6 +104,11 @@ class Game:
         self.animation_manager.add("cow_1_walk_left", Animation(self.atlas_manager.get("cow_1"), [f"walk_left_{i}" for i in range(8)], animation_speed=10))
         self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("cow_1"), [f"walk_down_{i}" for i in range(8)], animation_speed=10))
         self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("cow_1"), [f"walk_up_{i}" for i in range(8)], animation_speed=10))
+
+        self.tile_atlas = TileAtlas()
+        self.tile_atlas.initialize(self.atlas_manager)
+        self.world = World()
+        self.all_sprites = AllSprites(self.world)
 
         Entity((200, 200), self.animation_manager.get("cow_1_idle_left"), self.all_sprites)
 
