@@ -36,8 +36,8 @@ class Game:
 
         self.atlas_manager = AtlasManager()
         self.animation_manager = AnimationManager()
-        self.atlas_manager.add("fishes")
-        self.atlas_manager.add("cow_1")
+        self.atlas_manager.add("animals/fishes")
+        self.atlas_manager.add("animals/cow_1")
 
         self.atlas_manager.add("player/base")
         self.atlas_manager.add("player/shoes/white")
@@ -48,6 +48,9 @@ class Game:
 
         self.atlas_manager.add("tiles/grass/grass_3")
         self.atlas_manager.add("tiles/beach/beach")
+
+        self.atlas_manager.add("trees/big_oak")
+        self.atlas_manager.add("trees/big_spruce")
 
         self.animation_manager.add("player/base/idle/down", Animation(self.atlas_manager.get("player/base"), [f"idle_down_{i}" for i in range(6)]))
         self.animation_manager.add("player/base/idle/right", Animation(self.atlas_manager.get("player/base"), [f"idle_right_{i}" for i in range(6)]))
@@ -97,18 +100,18 @@ class Game:
         self.animation_manager.add("player/hair/hair_1/grey/walk/right", Animation(self.atlas_manager.get("player/hair/hair_1/grey"), [f"walk_right_{i}" for i in range(6)]))
         self.animation_manager.add("player/hair/hair_1/grey/walk/up", Animation(self.atlas_manager.get("player/hair/hair_1/grey"), [f"walk_up_{i}" for i in range(6)]))
 
-        self.animation_manager.add("cow_1_idle_left", Animation(self.atlas_manager.get("cow_1"), ["idle_left_0", "idle_left_1"], animation_speed=10))
-        self.animation_manager.add("cow_1_idle_down", Animation(self.atlas_manager.get("cow_1"), ["idle_down_0", "idle_down_1"], animation_speed=10))
-        self.animation_manager.add("cow_1_idle_up", Animation(self.atlas_manager.get("cow_1"), ["idle_up_0", "idle_up_1"], animation_speed=10))
+        self.animation_manager.add("cow_1_idle_left", Animation(self.atlas_manager.get("animals/cow_1"), ["idle_left_0", "idle_left_1"], animation_speed=10))
+        self.animation_manager.add("cow_1_idle_down", Animation(self.atlas_manager.get("animals/cow_1"), ["idle_down_0", "idle_down_1"], animation_speed=10))
+        self.animation_manager.add("cow_1_idle_up", Animation(self.atlas_manager.get("animals/cow_1"), ["idle_up_0", "idle_up_1"], animation_speed=10))
 
-        self.animation_manager.add("cow_1_walk_left", Animation(self.atlas_manager.get("cow_1"), [f"walk_left_{i}" for i in range(8)], animation_speed=10))
-        self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("cow_1"), [f"walk_down_{i}" for i in range(8)], animation_speed=10))
-        self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("cow_1"), [f"walk_up_{i}" for i in range(8)], animation_speed=10))
+        self.animation_manager.add("cow_1_walk_left", Animation(self.atlas_manager.get("animals/cow_1"), [f"walk_left_{i}" for i in range(8)], animation_speed=10))
+        self.animation_manager.add("cow_1_walk_down", Animation(self.atlas_manager.get("animals/cow_1"), [f"walk_down_{i}" for i in range(8)], animation_speed=10))
+        self.animation_manager.add("cow_1_walk_up", Animation(self.atlas_manager.get("animals/cow_1"), [f"walk_up_{i}" for i in range(8)], animation_speed=10))
 
         self.tile_atlas = TileAtlas()
         self.tile_atlas.initialize(self.atlas_manager)
-        self.world = World()
-        self.all_sprites = AllSprites(self.world)
+        self.all_sprites = AllSprites()
+        self.world = World(self.all_sprites)
 
         Entity((200, 200), self.animation_manager.get("cow_1_idle_left"), self.all_sprites)
 
@@ -139,7 +142,7 @@ class Game:
     def draw(self) -> None:
         self.game_surface.fill((135, 206, 235))
         # self.atlas_manager.get("fishes").render(self.game_surface, "Clownfish", (150, 150))
-        self.all_sprites.draw(self.game_surface, self.player)
+        self.all_sprites.draw(self.world, self.game_surface, self.player)
 
         # Calculate the aspect ratio to avoid stretching
         aspect_ratio = self.game_resolution[0] / self.game_resolution[1]

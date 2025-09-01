@@ -2,21 +2,25 @@ import pygame
 from typing import Dict, Tuple
 from world.chunk import Chunk
 from world.biome_manager import BiomeManager
+from world.tree_generator import TreeGenerator
+from core.groups import AllSprites
 
 
 class World:
-    def __init__(self, chunk_size: int = 16, tile_size: int = 16, seed: int = 42):
+    def __init__(self, all_sprites: AllSprites, chunk_size: int = 16, tile_size: int = 16, seed: int = 12):
+        self.all_sprites = all_sprites
         self.chunk_size = chunk_size
         self.tile_size = tile_size
         self.chunks: Dict[Tuple[int, int], Chunk] = {}
         self.visible_chunks: Dict[Tuple[int, int], Chunk] = {}
         self.biome_manager = BiomeManager(seed=seed, scale=1000.0)
+        self.tree_generator = TreeGenerator(self.all_sprites, seed=seed, scale=100)
 
     def get_chunk(self, chunk_x: int, chunk_y: int) -> Chunk:
         chunk_key = (chunk_x, chunk_y)
         if chunk_key not in self.chunks:
             # Si le chunk n'existe pas, on le génère
-            self.chunks[chunk_key] = Chunk(chunk_x, chunk_y, self.chunk_size, self.tile_size, self.biome_manager)
+            self.chunks[chunk_key] = Chunk(chunk_x, chunk_y, self.chunk_size, self.tile_size, self.biome_manager, self.tree_generator)
 
         return self.chunks[chunk_key]
     

@@ -24,6 +24,7 @@ class Player(Entity):
         self.direction = Direction.LEFT
         self.state = State.IDLE
         self.speed = 200
+        self.is_running = False
         self.velocity = pygame.Vector2()
 
         super().__init__(position, self.animation_manager.get(f"player/base/{self.state.value}/{self.get_animation_direction().value}"), groups)
@@ -57,8 +58,11 @@ class Player(Entity):
 
         self.set_animation()
 
-        self.rect.x += self.velocity.x * self.speed * delta_time
-        self.rect.y += self.velocity.y * self.speed * delta_time
+        speed = self.speed
+        if self.is_running:
+            speed *= 2
+        self.rect.x += self.velocity.x * speed * delta_time
+        self.rect.y += self.velocity.y * speed * delta_time
 
         for animation in self.parts:
             animation.update(delta_time)
@@ -83,6 +87,8 @@ class Player(Entity):
         elif keys[pygame.K_d]:
             self.velocity.x = 1
             self.direction = Direction.RIGHT
+
+        self.is_running = keys[pygame.K_LSHIFT] == True
 
         if self.velocity.magnitude() > 0:
             self.velocity.normalize_ip()

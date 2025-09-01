@@ -1,0 +1,10 @@
+{
+    "texture": "trees/big_oak.png",
+    "sprites": [
+        {
+            "name": "big_oak",
+            "position": [64, 0],
+            "size": [64, 80]
+        }
+    ]
+}

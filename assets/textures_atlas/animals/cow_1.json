@@ -1,5 +1,5 @@
 {
-    "texture": "cow_1.png",
+    "texture": "animals/cow_1.png",
     "sprites": [
         {
             "name": "idle_left_0",

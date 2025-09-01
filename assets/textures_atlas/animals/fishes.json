@@ -1,5 +1,5 @@
 {
-    "texture": "fishes.png",
+    "texture": "animals/fishes.png",
     "sprites": [
         {
             "name": "Atlantic Bass",
