@@ -1,6 +1,6 @@
 import noise
 from typing import Type
-from world.biome import Biome, PrairieBiome, DesertBiome
+from world.biome import Biome, PrairieBiome, DesertBiome, BeachBiome, OceanBiome
 
 
 class BiomeManager:
@@ -13,10 +13,10 @@ class BiomeManager:
         self.scale = scale
 
     def get_biome(self, x: int, y: int) -> Biome:
-        noise_value = noise.pnoise2(
+        height = noise.pnoise2(
             x / self.scale,
             y / self.scale,
-            octaves=2,
+            octaves=4,
             persistence=0.5,
             lacunarity=2.0,
             repeatx=999999,
@@ -24,8 +24,12 @@ class BiomeManager:
             base=self.seed
         )
 
-        if noise_value < 0:
-            return DesertBiome()
-        else:
+        if height < -0.2:
+            return OceanBiome()
+        elif height < -0.1:
+            return BeachBiome()
+        elif height < 0.3:
             return PrairieBiome()
+        else:
+            return DesertBiome()
         

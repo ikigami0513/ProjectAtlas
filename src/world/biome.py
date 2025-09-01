@@ -34,3 +34,18 @@ class DesertBiome(Biome):
             (CactusTree, 1.0)
         ]
     
+
+class BeachBiome(Biome):
+    def get_tile(self):
+        return TileType.SAND
+    
+    def get_tree_probabilities(self):
+        return 0.0, []
+    
+
+class OceanBiome(Biome):
+    def get_tile(self):
+        return TileType.WATER
+    
+    def get_tree_probabilities(self):
+        return 0.0, []

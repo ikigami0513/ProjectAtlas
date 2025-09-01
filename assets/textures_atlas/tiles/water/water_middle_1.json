@@ -1,0 +1,45 @@
+{
+    "texture": "tiles/water/water_middle_1.png",
+    "sprites": [
+        {
+            "name": "frame_0",
+            "position": [0, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_1",
+            "position": [16, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_2",
+            "position": [32, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_3",
+            "position": [48, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_4",
+            "position": [64, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_5",
+            "position": [80, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_6",
+            "position": [96, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_7",
+            "position": [112, 0],
+            "size": [16, 16]
+        }
+    ]
+}

@@ -48,6 +48,7 @@ class Game:
 
         self.atlas_manager.add("tiles/grass/grass_3")
         self.atlas_manager.add("tiles/beach/beach")
+        self.atlas_manager.add("tiles/water/water_middle_1")
 
         self.atlas_manager.add("trees/big_oak")
         self.atlas_manager.add("trees/big_spruce")
