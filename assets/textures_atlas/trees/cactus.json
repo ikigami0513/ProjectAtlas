@@ -1,0 +1,15 @@
+{
+    "texture": "trees/cactus.png",
+    "sprites": [
+        {
+            "name": "cactus_0",
+            "position": [0, 0],
+            "size": [32, 32]
+        },
+        {
+            "name": "cactus_1",
+            "position": [32, 0],
+            "size": [32, 32]
+        }
+    ]
+}

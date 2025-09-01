@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Type
 from world.tile import TileType
-from world.tree import Tree, OakTree, SpruceTree
+from world.tree import Tree, OakTree, SpruceTree, CactusTree
 
 
 class Biome(ABC):
@@ -30,5 +30,7 @@ class DesertBiome(Biome):
         return TileType.SAND
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
-        return 0.0, []
+        return 0.001, [
+            (CactusTree, 1.0)
+        ]
     

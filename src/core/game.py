@@ -51,6 +51,7 @@ class Game:
 
         self.atlas_manager.add("trees/big_oak")
         self.atlas_manager.add("trees/big_spruce")
+        self.atlas_manager.add("trees/cactus")
 
         self.animation_manager.add("player/base/idle/down", Animation(self.atlas_manager.get("player/base"), [f"idle_down_{i}" for i in range(6)]))
         self.animation_manager.add("player/base/idle/right", Animation(self.atlas_manager.get("player/base"), [f"idle_right_{i}" for i in range(6)]))
