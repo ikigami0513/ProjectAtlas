@@ -1,11 +1,11 @@
 import pygame
-import noise
 from typing import List
 from world.tile import TileAtlas, TileType
+from world.biome_manager import BiomeManager
 
 
 class Chunk:
-    def __init__(self, chunk_x: int, chunk_y: int, chunk_size: int, tile_size: int):
+    def __init__(self, chunk_x: int, chunk_y: int, chunk_size: int, tile_size: int, biome_manager: BiomeManager):
         self.chunk_x = chunk_x
         self.chunk_y = chunk_y
         self.chunk_size = chunk_size
@@ -13,14 +13,22 @@ class Chunk:
         
         self.tiles: List[List[TileType]] = []
         self.tile_atlas = TileAtlas()
+        self.biome_manager = biome_manager
 
         self.generate_tiles()
 
     def generate_tiles(self) -> None:
+        world_x = self.chunk_x * self.chunk_size * self.tile_size
+        world_y = self.chunk_y * self.chunk_size * self.tile_size
+
         for row in range(self.chunk_size):
             self.tiles.append([])
             for col in range(self.chunk_size):
-                self.tiles[row].append(TileType.GRASS)
+                tile_world_x = world_x + col * self.tile_size
+                tile_world_y = world_y + row * self.tile_size
+
+                biome = self.biome_manager.get_biome(tile_world_x, tile_world_y)
+                self.tiles[row].append(biome.get_tile())
                 
     def draw(self, surface: pygame.Surface, offset: pygame.Vector2) -> None:
         world_x = self.chunk_x * self.chunk_size * self.tile_size
