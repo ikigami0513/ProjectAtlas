@@ -1,8 +1,8 @@
 {
-    "texture": "tiles/beach/beach.png",
+    "texture": "tiles/grass/grass_3_middle.png",
     "sprites": [
         {
-            "name": "sand",
+            "name": "grass",
             "position": [0, 0],
             "size": [16, 16]
         }

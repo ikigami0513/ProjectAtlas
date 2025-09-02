@@ -1,0 +1,11 @@
+{
+    "atlas": "player/pants/og/blue",
+    "frames": [
+        "walk_down_0",
+        "walk_down_1",
+        "walk_down_2",
+        "walk_down_3",
+        "walk_down_4",
+        "walk_down_5"
+    ]
+}

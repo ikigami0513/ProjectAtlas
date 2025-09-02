@@ -1,0 +1,79 @@
+{
+    "atlases": [
+        "animals/fishes",
+        "animals/cow_1",
+
+        "player/base",
+        "player/shoes/white",
+        "player/pants/og/blue",
+        "player/chest/og/black",
+        "player/hand/hand",
+        "player/hair/hair_1/grey",
+
+        "tiles/grass/grass_3",
+        "tiles/grass/grass_3_middle",
+        "tiles/beach/beach",
+        "tiles/water/water_middle_1",
+
+        "trees/big_oak",
+        "trees/big_spruce",
+        "trees/cactus"
+    ],
+    "animations": [
+        "player/base/idle/down",
+        "player/base/idle/right",
+        "player/base/idle/up",
+        
+        "player/base/walk/down",
+        "player/base/walk/right",
+        "player/base/walk/up",
+
+        "player/shoes/white/idle/down",
+        "player/shoes/white/idle/right",
+        "player/shoes/white/idle/up",
+
+        "player/shoes/white/walk/down",
+        "player/shoes/white/walk/right",
+        "player/shoes/white/walk/up",
+        
+        "player/pants/og/blue/idle/down",
+        "player/pants/og/blue/idle/right",
+        "player/pants/og/blue/idle/up",
+
+        "player/pants/og/blue/walk/down",
+        "player/pants/og/blue/walk/right",
+        "player/pants/og/blue/walk/up",
+
+        "player/chest/og/black/idle/down",
+        "player/chest/og/black/idle/right",
+        "player/chest/og/black/idle/up",
+
+        "player/chest/og/black/walk/down",
+        "player/chest/og/black/walk/right",
+        "player/chest/og/black/walk/up",
+
+        "player/hand/hand/idle/down",
+        "player/hand/hand/idle/right",
+        "player/hand/hand/idle/up",
+
+        "player/hand/hand/walk/down",
+        "player/hand/hand/walk/right",
+        "player/hand/hand/walk/up",
+
+        "player/hair/hair_1/grey/idle/down",
+        "player/hair/hair_1/grey/idle/right",
+        "player/hair/hair_1/grey/idle/up",
+
+        "player/hair/hair_1/grey/walk/down",
+        "player/hair/hair_1/grey/walk/right",
+        "player/hair/hair_1/grey/walk/up",
+
+        "animal/cow_1/idle/down",
+        "animal/cow_1/idle/left",
+        "animal/cow_1/idle/up",
+
+        "animal/cow_1/walk/down",
+        "animal/cow_1/walk/left",
+        "animal/cow_1/walk/up"
+    ]
+}

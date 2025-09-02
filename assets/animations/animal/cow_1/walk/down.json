@@ -1,0 +1,13 @@
+{
+    "atlas": "animals/cow_1",
+    "frames": [
+        "walk_down_0",
+        "walk_down_1",
+        "walk_down_2",
+        "walk_down_3",
+        "walk_down_4",
+        "walk_down_5",
+        "walk_down_6",
+        "walk_down_7"
+    ]
+}

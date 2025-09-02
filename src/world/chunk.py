@@ -34,7 +34,7 @@ class Chunk:
                 tile_world_y = world_y + row * self.tile_size
 
                 biome = self.biome_manager.get_biome(tile_world_x, tile_world_y)
-                self.tiles[row].append(biome.get_tile())
+                self.tiles[row].append(biome.get_tile(tile_world_x, tile_world_y))
 
                 tree = self.tree_generator.generate_tree(tile_world_x, tile_world_y, biome)
                 if tree:

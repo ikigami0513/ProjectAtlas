@@ -25,11 +25,11 @@ class BiomeManager:
         )
 
         if height < -0.2:
-            return OceanBiome()
+            return OceanBiome(self.seed)
         elif height < -0.1:
-            return BeachBiome()
+            return BeachBiome(self.seed)
         elif height < 0.3:
-            return PrairieBiome()
+            return PrairieBiome(self.seed)
         else:
-            return DesertBiome()
+            return DesertBiome(self.seed)
         

@@ -1,3 +1,4 @@
+import noise
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Type
 from world.tile import TileType
@@ -5,8 +6,12 @@ from world.tree import Tree, OakTree, SpruceTree, CactusTree
 
 
 class Biome(ABC):
+    def __init__(self, seed: int = 0, scale: float = 20.0):
+        self.seed = seed
+        self.scale = scale
+
     @abstractmethod
-    def get_tile(self) -> TileType:
+    def get_tile(self, x: int, y: int) -> TileType:
         pass
 
     @abstractmethod
@@ -15,8 +20,22 @@ class Biome(ABC):
 
 
 class PrairieBiome(Biome):
-    def get_tile(self) -> TileType:
-        return TileType.GRASS
+    def get_tile(self, x: int, y: int) -> TileType:
+        value = noise.pnoise2(
+            x / self.scale,
+            y / self.scale,
+            octaves=1,
+            persistence=0.5,
+            lacunarity=2.0,
+            repeatx=999999,
+            repeaty=999999,
+            base=self.seed,
+        )
+        
+        if value > 0.0:
+            return TileType.GRASS
+        else:
+            return TileType.GRASS_PATTERN_1
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
         return 0.01, [
@@ -26,7 +45,7 @@ class PrairieBiome(Biome):
     
 
 class DesertBiome(Biome):
-    def get_tile(self) -> TileType:
+    def get_tile(self, x: int, y: int) -> TileType:
         return TileType.SAND
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
@@ -36,7 +55,7 @@ class DesertBiome(Biome):
     
 
 class BeachBiome(Biome):
-    def get_tile(self):
+    def get_tile(self, x: int, y: int):
         return TileType.SAND
     
     def get_tree_probabilities(self):
@@ -44,7 +63,7 @@ class BeachBiome(Biome):
     
 
 class OceanBiome(Biome):
-    def get_tile(self):
+    def get_tile(self, x: int, y: int):
         return TileType.WATER
     
     def get_tree_probabilities(self):

@@ -1,0 +1,7 @@
+{
+    "atlas": "animals/cow_1",
+    "frames": [
+        "idle_down_0",
+        "idle_down_1"
+    ]
+}

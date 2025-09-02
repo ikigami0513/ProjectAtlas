@@ -1,0 +1,11 @@
+{
+    "atlas": "player/base",
+    "frames": [
+        "walk_up_0",
+        "walk_up_1",
+        "walk_up_2",
+        "walk_up_3",
+        "walk_up_4",
+        "walk_up_5"
+    ]
+}

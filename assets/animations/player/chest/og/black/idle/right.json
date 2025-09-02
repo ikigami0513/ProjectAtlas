@@ -1,0 +1,11 @@
+{
+    "atlas": "player/chest/og/black",
+    "frames": [
+        "idle_right_0",
+        "idle_right_1",
+        "idle_right_2",
+        "idle_right_3",
+        "idle_right_4",
+        "idle_right_5"
+    ]
+}

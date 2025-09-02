@@ -1,0 +1,11 @@
+{
+    "atlas": "player/hair/hair_1/grey",
+    "frames": [
+        "idle_up_0",
+        "idle_up_1",
+        "idle_up_2",
+        "idle_up_3",
+        "idle_up_4",
+        "idle_up_5"
+    ]
+}
