@@ -3,7 +3,7 @@
     "sprites": [
         {
             "name": "sand",
-            "position": [0, 0],
+            "position": [16, 16],
             "size": [16, 16]
         }
     ]

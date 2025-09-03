@@ -32,7 +32,7 @@ class PrairieBiome(Biome):
             base=self.seed,
         )
         
-        if value > 0.0:
+        if value > -0.3:
             return TileType.GRASS
         else:
             return TileType.GRASS_PATTERN_1
@@ -46,7 +46,21 @@ class PrairieBiome(Biome):
 
 class DesertBiome(Biome):
     def get_tile(self, x: int, y: int) -> TileType:
-        return TileType.SAND
+        value = noise.pnoise2(
+            x / self.scale,
+            y / self.scale,
+            octaves=1,
+            persistence=0.5,
+            lacunarity=2.0,
+            repeatx=999999,
+            repeaty=999999,
+            base=self.seed,
+        )
+        
+        if value > -0.3:
+            return TileType.SAND
+        else:
+            return TileType.SAND_PATTERN
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
         return 0.001, [

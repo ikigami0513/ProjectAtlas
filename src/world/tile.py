@@ -9,6 +9,7 @@ class TileType(Enum):
     GRASS = "grass"
     GRASS_PATTERN_1 = "grass_pattern_1"
     SAND = "sand"
+    SAND_PATTERN = "sand_pattern"
     WATER = "water"
 
 
@@ -26,4 +27,5 @@ class TileAtlas(metaclass=SingletonMeta):
         self.tiles[TileType.GRASS] = TileModel(TileType.GRASS, atlas_manager.get("tiles/grass/grass_3_middle").get_sprite("grass"))
         self.tiles[TileType.GRASS_PATTERN_1] = TileModel(TileType.GRASS_PATTERN_1, atlas_manager.get("tiles/grass/grass_3").get_sprite("grass_pattern_1"))
         self.tiles[TileType.SAND] = TileModel(TileType.SAND, atlas_manager.get("tiles/beach/beach").get_sprite("sand"))
+        self.tiles[TileType.SAND_PATTERN] = TileModel(TileType.SAND_PATTERN, atlas_manager.get("tiles/beach/sand").get_sprite("sand_pattern"))
         self.tiles[TileType.WATER] = TileModel(TileType.WATER, atlas_manager.get("tiles/water/water_middle_1").get_sprite("frame_0"))

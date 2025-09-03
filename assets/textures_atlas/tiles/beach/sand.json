@@ -1,0 +1,10 @@
+{
+    "texture": "tiles/beach/sand.png",
+    "sprites": [
+        {
+            "name": "sand_pattern",
+            "position": [0, 0],
+            "size": [16, 16]
+        }
+    ]
+}
