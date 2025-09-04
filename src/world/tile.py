@@ -1,31 +1,55 @@
-from enum import Enum
+import os
+import json
 import pygame
-from typing import Dict
+from typing import Dict, List, Tuple, Union
 from graphics.atlas_manager import AtlasManager
+from graphics.animation_manager import AnimationManager
+from graphics.animation import Animation
 from core.singleton import SingletonMeta
 
 
-class TileType(Enum):
-    GRASS = "grass"
-    GRASS_PATTERN_1 = "grass_pattern_1"
-    SAND = "sand"
-    SAND_PATTERN = "sand_pattern"
-    WATER = "water"
-
-
 class TileModel:
-    def __init__(self, type: TileType, texture: pygame.Surface):
+    def __init__(self, type: str, texture: pygame.Surface):
         self.type = type
         self.texture = texture
 
 
+class AnimatedTileModel:
+    def __init__(self, type: str, animation: Animation):
+        self.type = type
+        self.animation = animation
+
+
 class TileAtlas(metaclass=SingletonMeta):
     def __init__(self):
-        self.tiles: Dict[TileType, TileModel] = {}
+        self.tiles: Dict[str, Union[TileModel, AnimatedTileModel]] = {}
 
-    def initialize(self, atlas_manager: AtlasManager):
-        self.tiles[TileType.GRASS] = TileModel(TileType.GRASS, atlas_manager.get("tiles/grass/grass_3_middle").get_sprite("grass"))
-        self.tiles[TileType.GRASS_PATTERN_1] = TileModel(TileType.GRASS_PATTERN_1, atlas_manager.get("tiles/grass/grass_3").get_sprite("grass_pattern_1"))
-        self.tiles[TileType.SAND] = TileModel(TileType.SAND, atlas_manager.get("tiles/beach/beach").get_sprite("sand"))
-        self.tiles[TileType.SAND_PATTERN] = TileModel(TileType.SAND_PATTERN, atlas_manager.get("tiles/beach/sand").get_sprite("sand_pattern"))
-        self.tiles[TileType.WATER] = TileModel(TileType.WATER, atlas_manager.get("tiles/water/water_middle_1").get_sprite("frame_0"))
+    def initialize(self, atlas_manager: AtlasManager, animation_manager: AnimationManager):
+        with open(os.path.join("assets", "tiles.json"), "r") as f:
+            tiles = json.load(f)
+
+        for tile in tiles:
+            if tile["type"] == "static":
+                self.tiles[tile["name"]] = TileModel(tile["type"], atlas_manager.get(tile["atlas"]).get_sprite(tile["sprite"]))
+            elif tile["type"] == "animated":
+                self.tiles[tile["name"]] = AnimatedTileModel(tile["type"], animation=animation_manager.get(tile["animation"]))
+
+        print(self.tiles)
+
+class Tile(pygame.sprite.Sprite):
+    def __init__(self, tile_model: TileModel, pos: Tuple[int, int], groups: List[pygame.sprite.Group]):
+        super().__init__(groups)
+        self.image = tile_model.texture
+        self.rect = self.image.get_rect(center=pos)
+
+
+class AnimatedTile(pygame.sprite.Sprite):
+    def __init__(self, tile_model: AnimatedTileModel, pos: Tuple[int, int], groups: List[pygame.sprite.Group]):
+        super().__init__(groups)
+        self.animation = tile_model.animation
+        self.image = self.animation.current_frame
+        self.rect = self.image.get_rect(center=pos)
+
+    def update(self, delta_time: float):
+        self.animation.update(delta_time)
+        self.image = self.animation.current_frame

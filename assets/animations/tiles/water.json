@@ -1,0 +1,10 @@
+{
+    "atlas": "tiles/water/water",
+    "frames": [
+        "frame_0",
+        "frame_1",
+        "frame_2",
+        "frame_3"
+    ],
+    "speed": 0.01
+}

@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 class Animation:
-    def __init__(self, name, loop: bool = True, animation_speed: int = 20, scale: float = 1.0):
+    def __init__(self, name):
         frozen = hasattr(sys, "_MEIPASS")
 
         base_dir = Path(getattr(sys, "_MEIPASS", ".")) / "assets" / "animations" if frozen else Path("assets", "animations")
@@ -23,10 +23,10 @@ class Animation:
         
         self.texture_atlas = AtlasManager().get(self.data.get("atlas"))
         self.frames = self.data.get("frames")
-        self.loop = loop
+        self.loop = self.data.get("loop", True)
         self.finish = False
-        self.animation_speed = animation_speed
-        self.scale = scale
+        self.animation_speed = self.data.get("speed", 20)
+        self.scale = self.data.get("scale", 1.0)
         self.frame = 0.0
 
         self.current_frame = self.texture_atlas.get_sprite(self.frames[int(self.frame)], self.scale)

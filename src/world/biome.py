@@ -1,7 +1,6 @@
 import noise
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Type
-from world.tile import TileType
 from world.tree import Tree, OakTree, SpruceTree, CactusTree
 
 
@@ -11,7 +10,7 @@ class Biome(ABC):
         self.scale = scale
 
     @abstractmethod
-    def get_tile(self, x: int, y: int) -> TileType:
+    def get_tile(self, x: int, y: int) -> str:
         pass
 
     @abstractmethod
@@ -20,7 +19,7 @@ class Biome(ABC):
 
 
 class PrairieBiome(Biome):
-    def get_tile(self, x: int, y: int) -> TileType:
+    def get_tile(self, x: int, y: int) -> str:
         value = noise.pnoise2(
             x / self.scale,
             y / self.scale,
@@ -33,9 +32,9 @@ class PrairieBiome(Biome):
         )
         
         if value > -0.3:
-            return TileType.GRASS
+            return "grass"
         else:
-            return TileType.GRASS_PATTERN_1
+            return "grass_pattern_1"
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
         return 0.01, [
@@ -45,7 +44,7 @@ class PrairieBiome(Biome):
     
 
 class DesertBiome(Biome):
-    def get_tile(self, x: int, y: int) -> TileType:
+    def get_tile(self, x: int, y: int) -> str:
         value = noise.pnoise2(
             x / self.scale,
             y / self.scale,
@@ -58,9 +57,9 @@ class DesertBiome(Biome):
         )
         
         if value > -0.3:
-            return TileType.SAND
+            return "sand"
         else:
-            return TileType.SAND_PATTERN
+            return "sand_pattern"
     
     def get_tree_probabilities(self) -> Tuple[float, List[Tuple[Type, float]]]:
         return 0.001, [
@@ -70,7 +69,7 @@ class DesertBiome(Biome):
 
 class BeachBiome(Biome):
     def get_tile(self, x: int, y: int):
-        return TileType.SAND
+        return "sand"
     
     def get_tree_probabilities(self):
         return 0.0, []
@@ -78,7 +77,7 @@ class BeachBiome(Biome):
 
 class OceanBiome(Biome):
     def get_tile(self, x: int, y: int):
-        return TileType.WATER
+        return "water"
     
     def get_tree_probabilities(self):
         return 0.0, []

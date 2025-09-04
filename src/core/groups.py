@@ -11,11 +11,11 @@ class AllSprites(pygame.sprite.Group):
         super().__init__()
         self.offset = pygame.Vector2()
 
-    def draw(self, world: 'World', surface: pygame.Surface, player: Player) -> None:
+    def draw(self, world: 'World', surface: pygame.Surface, player: Player, delta_time: float) -> None:
         self.offset.x = player.rect.centerx - surface.get_width() / 2
         self.offset.y = player.rect.centery - surface.get_height() / 2
 
-        world.update(player.rect.center)
+        world.update(delta_time, player.rect.center)
         world.draw(surface, self.offset)
         
         visible_sprites = []

@@ -1,0 +1,31 @@
+[
+    {
+        "name": "grass",
+        "type": "static",
+        "atlas": "tiles/grass/grass_3_middle",
+        "sprite": "grass"
+    },
+    {
+        "name": "grass_pattern_1",
+        "type": "static",
+        "atlas": "tiles/grass/grass_3",
+        "sprite": "grass_pattern_1"
+    },
+    {
+        "name": "sand",
+        "type": "static",
+        "atlas": "tiles/beach/beach",
+        "sprite": "sand"
+    },
+    {
+        "name": "sand_pattern",
+        "type": "static",
+        "atlas": "tiles/beach/sand",
+        "sprite": "sand_pattern"
+    },
+    {
+        "name": "water",
+        "type": "animated",
+        "animation": "tiles/water"
+    }
+]

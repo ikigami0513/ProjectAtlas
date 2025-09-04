@@ -1,0 +1,25 @@
+{
+    "texture": "tiles/water/water.png",
+    "sprites": [
+        {
+            "name": "frame_0",
+            "position": [0, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_1",
+            "position": [16, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_2",
+            "position": [32, 0],
+            "size": [16, 16]
+        },
+        {
+            "name": "frame_3",
+            "position": [48, 0],
+            "size": [16, 16]
+        }
+    ]
+}

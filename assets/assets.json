@@ -14,13 +14,15 @@
         "tiles/grass/grass_3_middle",
         "tiles/beach/sand",
         "tiles/beach/beach",
-        "tiles/water/water_middle_1",
+        "tiles/water/water",
 
         "trees/big_oak",
         "trees/big_spruce",
         "trees/cactus"
     ],
     "animations": [
+        "tiles/water",
+
         "player/base/idle/down",
         "player/base/idle/right",
         "player/base/idle/up",

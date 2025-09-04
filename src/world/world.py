@@ -24,7 +24,7 @@ class World:
 
         return self.chunks[chunk_key]
     
-    def update(self, player_position: Tuple[int, int], render_distance: int = 2) -> None:
+    def update(self, delta_time: float, player_position: Tuple[int, int], render_distance: int = 2) -> None:
         current_chunk_x = int(player_position[0] // (self.chunk_size * self.tile_size))
         current_chunk_y = int(player_position[1] // (self.chunk_size * self.tile_size))
 
@@ -37,6 +37,9 @@ class World:
                 new_visible_chunks[(chunk_x, chunk_y)] = chunk
 
         self.visible_chunks = new_visible_chunks
+
+        for chunk in self.visible_chunks.values():
+            chunk.update(delta_time)
 
     def draw(self, surface: pygame.Surface, offset: pygame.Vector2) -> None:
         for chunk_pos, chunk in self.visible_chunks.items():

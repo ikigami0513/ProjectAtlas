@@ -48,7 +48,7 @@ class Game:
                 self.animation_manager.add(animation)
 
         self.tile_atlas = TileAtlas()
-        self.tile_atlas.initialize(self.atlas_manager)
+        self.tile_atlas.initialize(self.atlas_manager, self.animation_manager)
         self.all_sprites = AllSprites()
         self.world = World(self.all_sprites)
 
@@ -78,10 +78,10 @@ class Game:
         self.all_sprites.update(delta_time)
         self.ui_manager.update(delta_time)
 
-    def draw(self) -> None:
+    def draw(self, delta_time: float) -> None:
         self.game_surface.fill((135, 206, 235))
         # self.atlas_manager.get("fishes").render(self.game_surface, "Clownfish", (150, 150))
-        self.all_sprites.draw(self.world, self.game_surface, self.player)
+        self.all_sprites.draw(self.world, self.game_surface, self.player, delta_time)
 
         # Calculate the aspect ratio to avoid stretching
         aspect_ratio = self.game_resolution[0] / self.game_resolution[1]
@@ -116,7 +116,7 @@ class Game:
             delta_time = self.clock.tick(self.fps) / 1000.0
             self.handle_events(delta_time)
             self.update(delta_time)
-            self.draw()
+            self.draw(delta_time)
             self.clock.tick(self.fps)
 
         pygame.quit()
