@@ -23,7 +23,7 @@ class Player(Entity):
         self.animation_manager = AnimationManager()
         self.direction = Direction.LEFT
         self.state = State.IDLE
-        self.speed = 200
+        self.speed = 100
         self.is_running = False
         self.velocity = pygame.Vector2()
 

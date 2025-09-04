@@ -25,7 +25,7 @@ class Animation:
         self.frames = self.data.get("frames")
         self.loop = self.data.get("loop", True)
         self.finish = False
-        self.animation_speed = self.data.get("speed", 20)
+        self.animation_speed = self.data.get("speed", 10)
         self.scale = self.data.get("scale", 1.0)
         self.frame = 0.0
 

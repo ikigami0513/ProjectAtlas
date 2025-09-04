@@ -13,7 +13,7 @@ class World:
         self.tile_size = tile_size
         self.chunks: Dict[Tuple[int, int], Chunk] = {}
         self.visible_chunks: Dict[Tuple[int, int], Chunk] = {}
-        self.biome_manager = BiomeManager(seed=seed, scale=1000.0, continent_scale=1000.0)
+        self.biome_manager = BiomeManager(seed=seed, scale=10000.0, continent_scale=1000.0)
         self.tree_generator = TreeGenerator(self.all_sprites, seed=seed, scale=100)
 
     def get_chunk(self, chunk_x: int, chunk_y: int) -> Chunk:

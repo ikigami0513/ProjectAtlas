@@ -11,9 +11,18 @@ class AllSprites(pygame.sprite.Group):
         super().__init__()
         self.offset = pygame.Vector2()
 
+        # Facteur de Lerp. Plus la valeur est petite, plus la caméra est "lourde"
+        # Plus la valeur est grande (proche de 1), plus la caméra est rapide
+        self.lerp_factor = 0.1 
+
     def draw(self, world: 'World', surface: pygame.Surface, player: Player, delta_time: float) -> None:
-        self.offset.x = player.rect.centerx - surface.get_width() / 2
-        self.offset.y = player.rect.centery - surface.get_height() / 2
+        # Cible du décalage, c'est-à-dire la position où la caméra veut aller
+        target_offset_x = player.rect.centerx - surface.get_width() / 2
+        target_offset_y = player.rect.centery - surface.get_height() / 2
+
+        # Interpolation linéaire pour le décalage (Lerp)
+        self.offset.x += (target_offset_x - self.offset.x) * self.lerp_factor
+        self.offset.y += (target_offset_y - self.offset.y) * self.lerp_factor
 
         world.update(delta_time, player.rect.center)
         world.draw(surface, self.offset)

@@ -3,6 +3,7 @@ from graphics.animation import Animation
 from typing import List, Tuple
 from copy import deepcopy
 
+
 class Entity(pygame.sprite.Sprite):
     def __init__(self, position: Tuple[float, float], animation: Animation, groups: List[pygame.sprite.Group]):
         super().__init__(groups)
